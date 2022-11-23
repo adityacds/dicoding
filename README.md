@@ -59,10 +59,10 @@ Dari gambar tersebut, dapat dilihat bahwa terdapat ketidakseimbangan dataset, kh
   Tahapan ini bertujuan agar model yang dilatih dapat diuji dengan data yang berbeda dari data yang digunakan dalam pelatihan. Pada proyek ini data dibagi menjadi dua dengan persentase untuk training sebesar 80% dan sisanya 20% untuk testing. Fungsi train_test_split pada library sklearn yang akan digunakan untuk menangani tahapan ini.
 *	Melakukan standarisasi data
   Melakukan standardisasi data pada semua fitur data. Hal ini dilakukan untuk membuat semua fitur berada dalam skala data yang sama yaitu dengan range 0-1.      Strandadisasi data ini menggunakan fungsi *StandardScaler*. Berikut rumus dari *Standardscaler* :\
-  $$ z = {x - b \over 2a} $$
-  z = (x – u ) / s
+  $ z = {x - u \over s} $ \
+  z = (x – u ) / s \
   Di mana z adalah nilai baru, x adalah nilai asli, u adalah mean dan s adalah standar deviasi.
-$$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+
 ## Modeling
 
 Penulis menggunakan 5 model *machine learning* yang berbeda, yaitu:
