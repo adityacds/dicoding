@@ -10,15 +10,15 @@ Diperlukan kesadaran bagi setiap orang tentang bahaya penyakit stroke ini, karen
 
 ## Business Understanding
 
-**Problem Statement**
-Berdasarkan latar belakang yang sudah dipaparkan sebelumnya, berikut masalah yang dapat diselesaikan dalam proyek ini :
+**Problem Statement** \
+Berdasarkan latar belakang yang sudah dipaparkan sebelumnya, berikut masalah yang dapat diselesaikan dalam proyek ini : \
 Bagaimana membuat model untuk memprediksi penyakit stroke pada manusia menggunakan Teknik *machine learning*?
 
-**Goals**
+**Goals** \
 Membuat model *machine learning* untuk memprediksi penyakit stroke pada manusia.
 
-**Solution Statements**
-Solusi yang dilakukan untuk mencapai tujuan dari proyek ini adalah :
+**Solution Statements** \
+Solusi yang dilakukan untuk mencapai tujuan dari proyek ini adalah : 
   -	Membandingkan algoritma *AdaBoost*, *Gradient Boosting*, *Random Forest*, *Decision Tree*, dan *SVM*
   -	Menggunakan metrik pengukuran akurasi, *precision*, *recall*, dan *f1-score*.
 
@@ -58,21 +58,28 @@ Dari gambar tersebut, dapat dilihat bahwa terdapat ketidakseimbangan dataset, kh
 *	Melakukan data splitting menjadi data training dan data testing dengan perbandingan 80:20\
   Tahapan ini bertujuan agar model yang dilatih dapat diuji dengan data yang berbeda dari data yang digunakan dalam pelatihan. Pada proyek ini data dibagi menjadi dua dengan persentase untuk training sebesar 80% dan sisanya 20% untuk testing. Fungsi train_test_split pada library sklearn yang akan digunakan untuk menangani tahapan ini.
 *	Melakukan standarisasi data
-  Melakukan standardisasi data pada semua fitur data. Hal ini dilakukan untuk membuat semua fitur berada dalam skala data yang sama yaitu dengan range 0-1.      Strandadisasi data ini menggunakan fungsi *StandardScaler*. Berikut rumus dari *Standardscaler* :\
-  $ z = {x - u \over s} $ \
-  z = (x – u ) / s \
+  Melakukan standardisasi data pada semua fitur data. Hal ini dilakukan untuk membuat semua fitur berada dalam skala data yang sama yaitu dengan range 0-1.      Strandadisasi data ini menggunakan fungsi *StandardScaler*. Rumus fungsi StandardScaler : \
+  $$ z = {(x-u) \over s} $$ \
   Di mana z adalah nilai baru, x adalah nilai asli, u adalah mean dan s adalah standar deviasi.
-
+  
 ## Modeling
 
-Penulis menggunakan 5 model *machine learning* yang berbeda, yaitu:
+Penulis menggunakan 4 model *machine learning* yang berbeda, yaitu:
   1.	*AdaBoost*
+      Parameter yang digunakan : 
+        n_estimators=50, 
+        learning_rate=1, 
+        random_state=42
   2.	*Gradient Boosting*
+      Parameter yang digunakan : 
+        learning_rate=1
+        random_state=42
   3.	*Random Forest*
-  4.	*Decision Tree*
-  5.	*SVM*
-  
-Semua model dilatih menggunakan parameter *default* yang disediakan *library sklearn*.
+      Parameter yang digunakan : 
+        n_estimators=50, 
+        max_depth=16, 
+        random_state=42
+
 
 ## Evaluation
 
@@ -82,61 +89,54 @@ Metrik yang digunakan ada 4, yaitu:
   3.	*Recall*
   4.	*F1 Score*
 
+Berikut merupakan rumus dari keempat metrik tersebut:
+
+$$ Accuracy = {(TP + TN) \over (TP + TN + FP + FN)} $$
+$$ Precision = {TP \over (TP + FP)} $$
+$$ Recall = {TP \over (TP + FN)}$$
+$$ F1 Score = {2 * (Precision * Recall) \ (Precision + Recall)}
+
 Pada permasalahan ini, mendeteksi pasien dengan stroke sangatlah penting. Oleh karena itu, metrik paling sesuai untuk masalah ini adalah *recall* dan berusaha untuk meminimalkan jumlah *false negative*. Adapun jumlah *false positive* adalah prioritas kedua untuk diminimalisir.
 Hasil dari pelatihan model pertama kali dapat dilihat pada Tabel 1.
 
 Tabel 1. Hasil pelatihan model pertama kali.
-|                     | Accuracy | Precision |  Recall | F1 Score |
-|---------------------|:--------:|:---------:|:-------:|:--------:|
-| AdaBoost            | 0.945838 | 0         | 0       | 0        |
-| Gradient   Boosting | 0.945838 | 0.5       | 0.01852 | 0.035714 |
-| Random   Forest     | 0.942828 | 0         | 0       | 0        |
-| Decision   Tree     | 0.90672  | 0.157895  | 0.16667 | 0.162162 |
-| SVM                 | 0.945838 | 0         | 0       | 0        |
+|                   | Accuracy | Precision |   Recall | F1-Score |
+|------------------:|---------:|----------:|---------:|---------:|
+|      AdaBoost     | 0.945838 |       0.0 |      0.0 |      0.0 |
+| Gradient Boosting | 0.929789 |  0.214286 | 0.111111 | 0.146341 |
+|   Random Forest   | 0.942828 |       0.0 |      0.0 |      0.0 |
 
-![image](https://user-images.githubusercontent.com/65145111/203279922-5c6c7ded-886c-446b-bffa-e66bf308da09.png) \
+
+![image](https://user-images.githubusercontent.com/65145111/203688321-c0508a9c-bb6c-4cae-a177-2a1fa76800dc.png) \
 Gambar 2. Ada Boost
 
-![image](https://user-images.githubusercontent.com/65145111/203280003-059d9a5b-7d9e-4c4d-b168-e243e11ff2d5.png) \
+![image](https://user-images.githubusercontent.com/65145111/203688337-d77cfeff-44ed-4454-a111-d6a50be628fb.png) \
 Gambar 3. Gradient Boosting
 
-![image](https://user-images.githubusercontent.com/65145111/203280884-6800243c-85be-4529-b59f-76ece4d37872.png) \
+![image](https://user-images.githubusercontent.com/65145111/203688356-801ed81c-584e-444b-b728-80269d8259d6.png)) \
 Gambar 4. Random Forest.
-
-![image](https://user-images.githubusercontent.com/65145111/203280971-a22a91fd-6fcf-4993-9e4d-5dd675fc4473.png) \
-Gambar 5. Decision Tree
-
-![image](https://user-images.githubusercontent.com/65145111/203281054-79c91828-932d-46ee-a023-219de7da4e6b.png) \
-Gambar 6. SVM
 
 Dapat dilihat bahwa kelima model memiliki nilai *recall* yang rendah dengan banyak nilai *false negative*. Hal ini kemungkinan diakibatkan karena data yang tidak imbang di mana terdapat 248 pasien mengalami stroke dan 4733 data pasien tanpa stroke. Oleh karena itu, untuk menyeimbangkan data dilakukanlah *random undersampling*.
 Hasil pelatihan model dengan data yang seimbang dapat dilihat pada tabel 2.
 
 Tabel 2. Hasil pelatihan model pertama dengan data yang seimbang.
 
-|                     | Accuracy | Precision | Recall | F1 Score |
-|---------------------|:--------:|:---------:|:------:|:--------:|
-| AdaBoost            | 0.67     | 0.660377  | 0.7    | 0.67961  |
-| Gradient   Boosting | 0.61     | 0.603774  | 0.64   | 0.621359 |
-| Random   Forest     | 0.66     | 0.637931  | 0.74   | 0.68519  |
-| Decision   Tree     | 0.58     | 0.571429  | 0.64   | 0.603774 |
-| SVM                 | 0.73     | 0.72549   | 0.74   | 0.73267  |
+|                   | Accuracy | Precision | Recall | F1-Score |
+|------------------:|---------:|----------:|-------:|---------:|
+|      AdaBoost     |     0.67 |  0.660377 |    0.7 | 0.679612 |
+| Gradient Boosting |     0.62 |  0.607143 |   0.68 | 0.641509 |
+|   Random Forest   |     0.65 |  0.631579 |   0.72 | 0.672897 |
 
-![image](https://user-images.githubusercontent.com/65145111/203283286-3121cbb1-1c0f-4f70-b61e-d5d1895deed4.png) \
-Gambar 7. Ada Boost
 
-![image](https://user-images.githubusercontent.com/65145111/203283325-e828f5a7-b1b8-47dc-b1a9-ae889a0d4177.png) \
-Gambar 8. Gradient Boosting
+![image](https://user-images.githubusercontent.com/65145111/203688233-eee74955-835a-4d55-b9f9-3cabe10cc7bb.png) \
+Gambar 5. Ada Boost
 
-![image](https://user-images.githubusercontent.com/65145111/203283361-0f4543c6-3e61-47c9-93f0-14f79bc2a2a3.png) \
-Gambar 9. Random Forest
+![image](https://user-images.githubusercontent.com/65145111/203688200-c6b4235b-3f58-48b7-9546-203912975dd1.png) \
+Gambar 6. Gradient Boosting
 
-![image](https://user-images.githubusercontent.com/65145111/203283407-285c75d8-013b-4a75-bcc7-50134df13d32.png) \
-Gambar 10. Decision Tree
+![image](https://user-images.githubusercontent.com/65145111/203688170-988eef64-2772-4a83-a763-839fd132a855.png) \
+Gambar 7. Random Forest
 
-![image](https://user-images.githubusercontent.com/65145111/203283445-dd66079c-abf9-4030-9432-25d1cd5febb7.png) \
-Gambar 11. SVM
+Dapat dilihat bahwa ketiga model memiliki nilai *recall* yang jauh lebih baik dari model yang sebelumnya. Di mana model terbaik adalah model *Random Forest* dengan nilai *recall* 0.72 dan jumlah *false negative* terkecil yaitu 14.
 
-Dapat dilihat bahwa kelima model memiliki nilai *recall* yang jauh lebih baik dari model yang sebelumnya. Di mana model terbaik adalah model *Random Forest* dan *SVM* dengan nilai *recall* 0.74 dan jumlah *false negative* terkecil yaitu 13.
-
-Berdasarkan percobaan yang telah dilakukan, dalam masalah ini penulis memilih 2 model sebagai model terbaik, yaitu *Random Forest* dan *SVM*.
+Berdasarkan percobaan yang telah dilakukan, dalam masalah ini penulis memilih *Random Forest* sebagai model terbaik.
