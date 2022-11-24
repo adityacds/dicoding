@@ -19,7 +19,7 @@ Membuat model *machine learning* untuk memprediksi penyakit stroke pada manusia.
 
 **Solution Statements** \
 Solusi yang dilakukan untuk mencapai tujuan dari proyek ini adalah : 
-  -	Membandingkan algoritma *AdaBoost*, *Gradient Boosting*, *Random Forest*, *Decision Tree*, dan *SVM*
+  -	Membandingkan algoritma *AdaBoost*, *Gradient Boosting*, dan *Random Forest*
   -	Menggunakan metrik pengukuran akurasi, *precision*, *recall*, dan *f1-score*.
 
 ## Data Understanding
@@ -64,21 +64,21 @@ Dari gambar tersebut, dapat dilihat bahwa terdapat ketidakseimbangan dataset, kh
   
 ## Modeling
 
-Penulis menggunakan 4 model *machine learning* yang berbeda, yaitu:
-  1.	*AdaBoost*
-      Parameter yang digunakan : 
-        n_estimators=50, 
-        learning_rate=1, 
-        random_state=42
-  2.	*Gradient Boosting*
-      Parameter yang digunakan : 
-        learning_rate=1
-        random_state=42
-  3.	*Random Forest*
-      Parameter yang digunakan : 
-        n_estimators=50, 
-        max_depth=16, 
-        random_state=42
+Penulis menggunakan 3 model *machine learning* yang berbeda, yaitu:
+  1.	*AdaBoost* \
+      Parameter yang digunakan : \
+        n_estimators=50, \
+        learning_rate=1, \
+        random_state=42 
+  2.	*Gradient Boosting* \
+      Parameter yang digunakan : \
+        learning_rate=1 \
+        random_state=42 
+  3.	*Random Forest* \
+      Parameter yang digunakan : \
+        n_estimators=50, \
+        max_depth=16, \
+        random_state=42 
 
 
 ## Evaluation
@@ -91,10 +91,10 @@ Metrik yang digunakan ada 4, yaitu:
 
 Berikut merupakan rumus dari keempat metrik tersebut:
 
-$$ Accuracy = {(TP + TN) \over (TP + TN + FP + FN)} $$
-$$ Precision = {TP \over (TP + FP)} $$
-$$ Recall = {TP \over (TP + FN)}$$
-$$ F1 Score = {2 * (Precision * Recall) \ (Precision + Recall)}
+$$ Accuracy = {(TP + TN) \over (TP + TN + FP + FN)} $$ \
+$$ Precision = {TP \over (TP + FP)} $$ \
+$$ Recall = {TP \over (TP + FN)}$$ \
+$$ F1 Score = {2 * (Precision * Recall) \ (Precision + Recall)} \
 
 Pada permasalahan ini, mendeteksi pasien dengan stroke sangatlah penting. Oleh karena itu, metrik paling sesuai untuk masalah ini adalah *recall* dan berusaha untuk meminimalkan jumlah *false negative*. Adapun jumlah *false positive* adalah prioritas kedua untuk diminimalisir.
 Hasil dari pelatihan model pertama kali dapat dilihat pada Tabel 1.
