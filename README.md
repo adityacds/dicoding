@@ -63,23 +63,17 @@ Dari gambar tersebut, dapat dilihat bahwa terdapat ketidakseimbangan dataset, kh
   Di mana z adalah nilai baru, x adalah nilai asli, u adalah mean dan s adalah standar deviasi.
   
 ## Modeling
-
-Penulis menggunakan 3 model *machine learning* yang berbeda, yaitu:
+Setelah melakukan tahapan preprocessing makan data telah siap dimasukan kedalam model. Pada proyek ini dilakukan pembuatan model dengan dua cara, yaitu tanpa menyeimbangkan data dan dengan menyeimbangkan data (menggunakan random undersampling). Penulis menggunakan 3 model *machine learning* yang berbeda, yaitu *AdaBoost*, *Gradient Boosting*, dan *Random Forest*. Parameter yang digunakan pada kedua cara tersebut sama, yaitu :
   1.	*AdaBoost* \
-      Parameter yang digunakan : \
-        n_estimators=50, \
-        learning_rate=1, \
-        random_state=42 
+        Algoritma ini bertujuan untuk meningkatkan performa atau akurasi prediksi. Caranya adalah dengan menggabungkan beberapa model sederhana dan dianggap lemah *(weak learners)* sehingga membentuk suatu model yang kuat (strong ensemble learner). Dalam mengimplementasikan algoritma ini, saya menggunakan method AdaBoostClassifier dari sklearn.ensemble dengan parameter n_estimators=50, learning_rate=1 dan random_state=42.
+        
+        
   2.	*Gradient Boosting* \
-      Parameter yang digunakan : \
-        learning_rate=1 \
-        random_state=42 
+      Sama seperti *AdaBoost*,  Algoritma ini bertujuan untuk meningkatkan performa atau akurasi prediksi. Dalam mengimplementasikan algoritma ini, saya menggunakan method GradientBoostingClassifier dari sklearn.ensemble dengan parameter learning_rate=1 dan random_state=42. 
+        
   3.	*Random Forest* \
-      Parameter yang digunakan : \
-        n_estimators=50, \
-        max_depth=16, \
-        random_state=42 
-
+      Dalam mengimplementasikan algoritma ini, saya menggunakan method RandomForestClassifier dari sklearn.ensemble dengan parameter n_estimators=50 dan learning_rate=1, dan random_state=42. 
+      Kelebihan dari algoritma yang ini adalah dapat memperkiraan variabel apa yang penting dalam klasifikasi, sedangkan kekurangan dari algoritma ini yaitu memiliki kompleksitas yang tinggi.
 
 ## Evaluation
 
