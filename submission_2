@@ -1,0 +1,23 @@
+# Laporan Proyek *Machine Learning* – Aditya Chandra D.S
+
+## Project Overview
+Buku adalah jendela dunia. Dengan buku seseorang dapat menjelajah ke dunia luar tanpa perlu pergi ke dunia luar. Dengan buku seseorang dapat memperoleh pengetahuan yang tiada batas, melintas waktu, dan mengenal seseorang dari seluruh belahan dunia, karena buku merupakan sumber ilmu pengetahuan [1].
+Kegiatan membaca buku sangat penting bagi kehidupan manusia, dengan terbiasa membaca buku maka seseorang akan memiliki cakrawala pengetahuan yang luas [2].
+Namun dengan banyaknya jumlah buku yang tersedia terkadang membuat pembaca kebingungan dalam menentukan buku yang hendak mereka baca. Terkadang dijumpai pembaca yang hanya ingin membaca buku-buku yang dengan reputasi penjualan terbaik. Ada pula pembaca yang menentukan buku-buku yang akan dibaca selanjutnya berdasarkan rating dari buku-buku yang telah dilihatnya. [3]
+
+Berdasarkan permasalahan tersebut, pada proyek ini akan dibuat suatu model sistem rekomendasi menggunakan teknik collaborative filtering untuk merekomendasikan buku-buku yang mungkin akan dibaca oleh pengguna.
+
+## Business Understanding
+
+**Problem Statement** \
+Berdasarkan *Project Overview* yang sudah dipaparkan sebelumnya, berikut masalah yang dapat diselesaikan dalam proyek ini : \
+Bagaimana cara membuat sistem rekomendasi buku yang mungkin disukai dan belum pernah dibaca oleh pengguna?
+
+**Goals** \
+Adapun tujuan proyek ini adalah:
+Memberikan rekomendasi buku yang mungkin disukai dan belum pernah dibaca oleh pengguna.
+
+## Solution Approach
+Pada proyek ini, penulis akan membuat sistem rekomendasi dengan menggunakan collaborative filtering. Collaborative Filtering adalah sebuah metode yang merekomendasikan item berdasarkan kemiripan user dalam hal memilih atau memberi nilai kepada item.
+
+# Data Understanding
