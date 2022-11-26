@@ -21,3 +21,6 @@ Memberikan rekomendasi buku yang mungkin disukai dan belum pernah dibaca oleh pe
 Pada proyek ini, penulis akan membuat sistem rekomendasi dengan menggunakan collaborative filtering. Collaborative Filtering adalah sebuah metode yang merekomendasikan item berdasarkan kemiripan user dalam hal memilih atau memberi nilai kepada item.
 
 # Data Understanding
+
+Dataset yang digunakan pada proyek ini adalah *Book Recommendation Dataset* yang diambil dari https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset
+Dataset ini memiliki 3 file csv, yaitu Books.csv, Ratings.csv, dan Users.csv.
