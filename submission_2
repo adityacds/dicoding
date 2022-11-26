@@ -24,3 +24,77 @@ Pada proyek ini, penulis akan membuat sistem rekomendasi dengan menggunakan coll
 
 Dataset yang digunakan pada proyek ini adalah *Book Recommendation Dataset* yang diambil dari https://www.kaggle.com/datasets/arashnic/book-recommendation-dataset
 Dataset ini memiliki 3 file csv, yaitu Books.csv, Ratings.csv, dan Users.csv.
+
+1. Books.csv
+
+Penjelasan mengenai variabel yang ada pada dataset Books.csv dapat dilihat pada Tabel 1.
+
+Tabel 1. Variabel pada Books.csv
+| Kolom               | Keterangan                                                                |
+|---------------------|---------------------------------------------------------------------------|
+| ISBN                | International Standard Book Number merupakan kode unik masing masing buku |
+| Book-title          | Judul dari tiap buku                                                      |
+| Book-Author         | Penulis atau pengarang tiap buku                                          |
+| Year-Of_Publication | Tahun terbit tiap buku                                                    |
+| Publisher           | Lembaga penerbit tiap buku                                                |
+| Image-URL-S         | Link foto dari tiap buku yang berukuran kecil                             |
+| Image-URL-M         | Link foto dari tiap buku yang berukuran sedang                            |
+| Image-URL-L         | Link foto dari tiap buku yang berukuran besar                             |
+
+2. Ratings.csv
+
+Penjelasan mengenai variabel yang ada pada dataset Ratings.csv dapat dilihat pada Tabel 2.
+
+Tabel 2. Variabel pada Ratings.csv
+
+| Kolom       | Keterangan                                                                |
+|-------------|---------------------------------------------------------------------------|
+| User-ID     | Merupakan kode unik tiap user                                             |
+| ISBN        | International Standard Book Number merupakan kode unik masing masing buku |
+| Book-Rating | Merupakan rating dari tiap buku                                           |
+
+3. Users.csv
+
+Penjelasan mengenai variabel yang ada pada dataset Users.csv dapat dilihat pada Tabel 3.
+
+Tabel 3. Variabel pada Users.csv
+
+| Kolom    | Keterangan                    |
+|----------|-------------------------------|
+| User-ID  | Merupakan kode unik tiap user |
+| Location | Merupakan lokasi tiap user    |
+| Age      | Merupakan umur tiap user      |
+
+Sebelum melakukan *Data Preparation*, *dataset* perlu di load terlebih dahulu kemudian dilakukan eksplorasi terhadap *dataset* tersebut.
+
+# Data Preparation
+
+Berikut adalah tahapan yang dilakukan dalam proses data preparation:
+
+    - Menggabungkan dataset books, ratings, dan users.
+    - Melihat jumlah baris dan kolom pada dataset yang telah digabungkan.
+    - Mengecek jumlah data kosong pada setiap kolom.
+    - Mengecek apakah ada data yang terduplikat.
+    - Melihat visualisasi distribusi rating buku (ternyata data rating tidak seimbang).
+    
+    - Menghapus kategori yang tidak diperlukan pada kolom. kategori yang dihapus adalah rating dengan nilai 0 pada kolom Book-Rating.
+    - Mengecek visualisasi distribusi rating buku yang sudah ditangani data tidak seimbangnya.
+    - Menghapus data yang mempunyai nilai null.
+    - Melakukan encoding, di antaranya adalah: menyandikan (encode) fitur 'UserID' dan fitur 'ISBN' ke dalam indeks integer, memetakan ‘User-ID’ dan ‘ISBN’ ke dataframe yang berkaitan, kemudian mengecek beberapa hal dalam data seperti jumlah user, jumlah isbn, kemudian mengubah nilai rating menjadi float.
+    - Melakukan pengacakan data. hal ini dilakukan agar distribusi data menjadi acak.
+    - Membagi dataset menjadi dua bagian. 80% untuk data training, dan 20% untuk data validasi.
+    
+# Modeling
+
+Setelah melakukan data preparation, langkah selanjutnya yang dilakukan adalah membuat model machine learning. Dalam penyusunan sistem rekomendasi ini, penulis menggunakan metode collaborative filtering yang dibuat berdasarkan rating buku yang ditelah diberikan oleh user.
+
+Pada tahap modelling ini, model menghitung skor kecocokan antara user dan ISBN dengan teknik embedding. Berikut tahapan yang dilakukan :
+- Melakukan proses embedding terhadap data user dan ISBN.
+- Melakukan operasi perkalian dot product antara embedding user dan ISBN.
+- Menambahkan bias untuk setiap user dan ISBN. Skor kecocokan ditetapkan dalam skala [0,1] dengan fungsi aktivasi sigmoid.
+- Membuat class RecommenderNet dengan keras Model class.
+- Proses compile terhadap model menggunakan Binary Crossentropy untuk menghitung loss function, Adam sebagai optimizer, dan RMSE sebagai metrics evaluation.
+
+# Evaluation
+
+
