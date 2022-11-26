@@ -95,6 +95,23 @@ Pada tahap modelling ini, model menghitung skor kecocokan antara user dan ISBN d
 - Membuat class RecommenderNet dengan keras Model class.
 - Proses compile terhadap model menggunakan Binary Crossentropy untuk menghitung loss function, Adam sebagai optimizer, dan RMSE sebagai metrics evaluation.
 
+Top 10 book recommendation dapat dilihat pada tabel 4.
+
+Tabel 4. Top 10 book recommendation
+
+| No | Penulis                    | Judul Buku                                                                       |
+|----|----------------------------|----------------------------------------------------------------------------------|
+| 1  | Pamela E. Apkarian-Russell | Postmarked Yesteryear: 30 Rare Holiday Postcards                                 |
+| 2  | Philip D. Eastman          | Go, Dog, Go (I Can Read It All by Myself Beginner Books)                         |
+| 3  | J. R. R. Tolkien           | The Two Towers (The Lord of the Rings, Part 2)                                   |
+| 4  | Shel Silverstein           | The Giving Tree                                                                  |
+| 5  | Bathroom Readers Institute | Uncle John's Supremely Satisfying Bathroom Reader (Uncle John's Bathroom Reader) |
+| 6  | Art Spiegelman             | Maus 1. Mein Vater kotzt Geschichte aus. Die Geschichte eines Ã?Â?berlebenden.   |
+| 7  | Scott Adams                | Dilbert: A Book of Postcards                                                     |
+| 8  | Dr. Seuss                  | The Sneetches and Other Stories                                                  |
+| 9  | J. K. Rowling              | Harry Potter and the Chamber of Secrets Postcard Book                            |
+| 10 | Douglas Adams              | The Hitchhiker's Guide to the Galaxy                                             |
+
 # Evaluation
 
 Setelah membangun model machine learning, kemudian dilakukan evaluasi kinerja model yang dihasilkan dengan menggunakan menggunakan metrik RMSE (Root Mean Square Error). Root Mean Square Error (RMSE) adalah metode pengukuran dengan mengukur perbedaan nilai dari prediksi sebuah model sebagai estimasi atas nilai yang diobservasi. Root Mean Square Error adalah hasil dari akar kuadrat Mean Square Error. Keakuratan metode estimasi kesalahan pengukuran ditandai dengan adanya nilai RMSE yang kecil. Metode estimasi yang mempunyai Root Mean Square Error (RMSE) lebih kecil dikatakan lebih akurat daripada metode estimasi yang mempunyai Root Mean Square Error (RMSE) lebih besar. Cara Menghitung Root Mean Square Error (RMSE) adalah dengan mengurangi nilai aktual dengan nilai prediksi kemudian dikuadratkan dan dijumlahkan keseluruhan hasilnya kemudian dibagi dengan banyaknya data. Hasil perhitungan tersebut selanjutnya dihitung kembali untuk mencari nilai dari akar kuadrat [4].
