@@ -10,7 +10,7 @@ Berdasarkan permasalahan tersebut, pada proyek ini akan dibuat suatu model siste
 ## Business Understanding
 
 **Problem Statement** \
-Berdasarkan *Project Overview* yang sudah dipaparkan sebelumnya, berikut masalah yang dapat diselesaikan dalam proyek ini : \
+Berdasarkan *Project Overview* yang sudah dipaparkan sebelumnya, berikut masalah yang dapat diselesaikan dalam proyek ini :
 Bagaimana cara membuat sistem rekomendasi buku yang mungkin disukai dan belum pernah dibaca oleh pengguna?
 
 **Goals** \
@@ -72,21 +72,84 @@ Sebelum melakukan *Data Preparation*, *dataset* perlu di load terlebih dahulu ke
 
 Berikut adalah tahapan yang dilakukan dalam proses *data preparation*:
 
-    - Menggabungkan dataset books, ratings, dan users.
-    - Melihat jumlah baris dan kolom pada dataset yang telah digabungkan.
-    - Mengecek jumlah data kosong pada setiap kolom.
-    - Mengecek apakah ada data yang terduplikat.
-    - Melihat visualisasi distribusi rating buku (ternyata data rating tidak seimbang).
-    - Menghapus kategori yang tidak diperlukan pada kolom. kategori yang dihapus adalah rating dengan nilai 0 pada kolom Book-Rating.
-    - Mengecek visualisasi distribusi rating buku yang sudah ditangani data tidak seimbangnya.
-    - Menghapus data yang mempunyai nilai *null*.
-    - Melakukan encoding, di antaranya adalah: menyandikan (encode) fitur 'UserID' dan fitur 'ISBN' ke dalam indeks integer, memetakan ‘User-ID’ dan ‘ISBN’ ke dataframe yang berkaitan, kemudian mengecek beberapa hal dalam data seperti jumlah user, jumlah isbn, kemudian mengubah nilai rating menjadi float.
-    - Melakukan pengacakan data. hal ini dilakukan agar distribusi data menjadi acak.
-    - Membagi dataset menjadi dua bagian. 80% untuk data training, dan 20% untuk data validasi.
+* Menggabungkan dataset books, ratings, dan users. Untuk memudahkan pemrosesan, maka ketiga dataset tersebut digabungkan terlebih dahulu.
+
+Tabel 4. Penggabungan dataset
+    
+|   |       ISBN |          Book-Title |          Book-Author | Year-Of-Publication |               Publisher |                                       Image-URL-S |                                       Image-URL-M |                                       Image-URL-L | User-ID | Book-Rating |                  Location |  Age |
+|--:|-----------:|--------------------:|---------------------:|--------------------:|------------------------:|--------------------------------------------------:|--------------------------------------------------:|--------------------------------------------------:|--------:|------------:|--------------------------:|-----:|
+| 0 | 0195153448 | Classical Mythology |   Mark P. O. Morford |                2002 | Oxford University Press | http://images.amazon.com/images/P/0195153448.0... | http://images.amazon.com/images/P/0195153448.0... | http://images.amazon.com/images/P/0195153448.0... |     2.0 |         0.0 | stockton, california, usa | 18.0 |
+| 1 | 0002005018 |        Clara Callan | Richard Bruce Wright |                2001 |   HarperFlamingo Canada | http://images.amazon.com/images/P/0002005018.0... | http://images.amazon.com/images/P/0002005018.0... | http://images.amazon.com/images/P/0002005018.0... |     8.0 |         5.0 |  timmins, ontario, canada |  NaN |
+| 2 | 0002005018 |        Clara Callan | Richard Bruce Wright |                2001 |   HarperFlamingo Canada | http://images.amazon.com/images/P/0002005018.0... | http://images.amazon.com/images/P/0002005018.0... | http://images.amazon.com/images/P/0002005018.0... | 11400.0 |         0.0 |   ottawa, ontario, canada | 49.0 |
+| 3 | 0002005018 |        Clara Callan | Richard Bruce Wright |                2001 |   HarperFlamingo Canada | http://images.amazon.com/images/P/0002005018.0... | http://images.amazon.com/images/P/0002005018.0... | http://images.amazon.com/images/P/0002005018.0... | 11676.0 |         8.0 |             n/a, n/a, n/a |  NaN |
+| 4 | 0002005018 |        Clara Callan | Richard Bruce Wright |                2001 |   HarperFlamingo Canada | http://images.amazon.com/images/P/0002005018.0... | http://images.amazon.com/images/P/0002005018.0... | http://images.amazon.com/images/P/0002005018.0... | 41385.0 |         0.0 |  sudbury, ontario, canada |  NaN |    
+    
+* Melihat jumlah baris dan kolom pada dataset yang telah digabungkan.
+* Mengecek jumlah data kosong pada setiap kolom.
+
+Tabel 5. Jumlah data yang kosong
+
+| ISBN                | 0      |
+|---------------------|--------|
+| Book-Title          | 0      |
+| Book-Author         | 1      |
+| Year-Of-Publication | 0      |
+| Publisher           | 2      |
+| Image-URL-S         | 0      |
+| Image-URL-M         | 0      |
+| Image-URL-L         | 4      |
+| User-ID             | 1209   |
+| Book-Rating         | 1209   |
+| Location            | 1209   |
+| Age                 | 279044 |
+| dtype: int64        |        |
+
+Berdasarkan tabel 5, diketahui bahwa ada yang datanya kosong.
+
+* Mengecek apakah ada data yang terduplikat. Ternyata tidak ada data yang terduplikat.
+* Melihat visualisasi distribusi rating buku.
+
+![image](https://user-images.githubusercontent.com/65145111/204081306-a1861ce1-6d21-4944-bbbb-0789821893e7.png)
+Gambar 1. Visualisasi distribusi rating buku.
+
+Berdasarkan gambar 1, ditemukan bahwa data rating tidak seimbang. Oleh karena itu pada tahap selanjutnya dilakukan penyeimbangan data
+
+* Menghapus kategori yang tidak diperlukan pada kolom. kategori yang dihapus adalah rating dengan nilai 0 pada kolom Book-Rating.
+* Mengecek visualisasi distribusi rating buku yang sudah ditangani data tidak seimbangnya.
+
+![image](https://user-images.githubusercontent.com/65145111/204081385-4f09cf33-613d-4f43-88bd-7a8978a90f27.png)
+Gambar 2. Visualisasi distribusi rating buku setelah penyeimbangan data.
+
+Berdasarkan gambar 2, ditemukan bahwa data rating sudah seimbang.
+
+* Menghapus data yang mempunyai nilai *null*.
+
+Tabel 6. Jumlah data yang memiliki nilai *null*
+
+| ISBN                | 0 |
+|---------------------|---|
+| Book-Title          | 0 |
+| Book-Author         | 0 |
+| Year-Of-Publication | 0 |
+| Publisher           | 0 |
+| Image-URL-S         | 0 |
+| Image-URL-M         | 0 |
+| Image-URL-L         | 0 |
+| User-ID             | 0 |
+| Book-Rating         | 0 |
+| Location            | 0 |
+| Age                 | 0 |
+| dtype: int64        |   |
+
+Berdasarkan data pada tabel 6, diketahui bahwa tidak ada data yang bernilai null.
+
+* Melakukan encoding, di antaranya adalah: menyandikan (encode) fitur 'UserID' dan fitur 'ISBN' ke dalam indeks integer, memetakan ‘User-ID’ dan ‘ISBN’ ke dataframe yang berkaitan, kemudian mengecek beberapa hal dalam data seperti jumlah user, jumlah isbn, kemudian mengubah nilai rating menjadi float.
+* Melakukan pengacakan data. Hal ini dilakukan agar distribusi data menjadi acak.
+* Membagi dataset menjadi dua bagian, yaitu 80% untuk data training, dan 20% untuk data validasi. Tahap ini menggunakan library sklearn.
     
 # Modeling
 
-Setelah melakukan data preparation, langkah selanjutnya yang dilakukan adalah membuat model machine learning. Dalam penyusunan sistem rekomendasi ini, penulis menggunakan metode collaborative filtering yang dibuat berdasarkan rating buku yang ditelah diberikan oleh user.
+Setelah melakukan data preparation, langkah selanjutnya yang dilakukan adalah membuat model *machine learning*. Dalam penyusunan sistem rekomendasi ini, penulis menggunakan metode collaborative filtering yang dibuat berdasarkan rating buku yang ditelah diberikan oleh user.
 
 Pada tahap modelling ini, model menghitung skor kecocokan antara user dan ISBN dengan teknik embedding. Berikut tahapan yang dilakukan :
 - Melakukan proses embedding terhadap data user dan ISBN.
@@ -95,9 +158,9 @@ Pada tahap modelling ini, model menghitung skor kecocokan antara user dan ISBN d
 - Membuat class RecommenderNet dengan keras Model class.
 - Proses compile terhadap model menggunakan Binary Crossentropy untuk menghitung loss function, Adam sebagai optimizer, dan RMSE sebagai metrics evaluation.
 
-Top 10 book recommendation dapat dilihat pada tabel 4.
+Top 10 book recommendation dapat dilihat pada tabel 7.
 
-Tabel 4. Top 10 book recommendation
+Tabel 7. Top 10 book recommendation
 
 | No | Penulis                    | Judul Buku                                                                       |
 |----|----------------------------|----------------------------------------------------------------------------------|
@@ -114,12 +177,17 @@ Tabel 4. Top 10 book recommendation
 
 # Evaluation
 
-Setelah membangun model machine learning, kemudian dilakukan evaluasi kinerja model yang dihasilkan dengan menggunakan menggunakan metrik RMSE (Root Mean Square Error). Root Mean Square Error (RMSE) adalah metode pengukuran dengan mengukur perbedaan nilai dari prediksi sebuah model sebagai estimasi atas nilai yang diobservasi. Root Mean Square Error adalah hasil dari akar kuadrat Mean Square Error. Keakuratan metode estimasi kesalahan pengukuran ditandai dengan adanya nilai RMSE yang kecil. Metode estimasi yang mempunyai Root Mean Square Error (RMSE) lebih kecil dikatakan lebih akurat daripada metode estimasi yang mempunyai Root Mean Square Error (RMSE) lebih besar. Cara Menghitung Root Mean Square Error (RMSE) adalah dengan mengurangi nilai aktual dengan nilai prediksi kemudian dikuadratkan dan dijumlahkan keseluruhan hasilnya kemudian dibagi dengan banyaknya data. Hasil perhitungan tersebut selanjutnya dihitung kembali untuk mencari nilai dari akar kuadrat [4].
+Setelah membangun model *machine learning*, kemudian dilakukan evaluasi kinerja model yang dihasilkan dengan menggunakan menggunakan metrik RMSE (Root Mean Square Error). Root Mean Square Error (RMSE) adalah metode pengukuran dengan mengukur perbedaan nilai dari prediksi sebuah model sebagai estimasi atas nilai yang diobservasi. Root Mean Square Error adalah hasil dari akar kuadrat Mean Square Error. Keakuratan metode estimasi kesalahan pengukuran ditandai dengan adanya nilai RMSE yang kecil. Metode estimasi yang mempunyai Root Mean Square Error (RMSE) lebih kecil dikatakan lebih akurat daripada metode estimasi yang mempunyai Root Mean Square Error (RMSE) lebih besar. Cara Menghitung Root Mean Square Error (RMSE) adalah dengan mengurangi nilai aktual dengan nilai prediksi kemudian dikuadratkan dan dijumlahkan keseluruhan hasilnya kemudian dibagi dengan banyaknya data. Hasil perhitungan tersebut selanjutnya dihitung kembali untuk mencari nilai dari akar kuadrat [4].
 
-Visualisasi metrik RMSE dapat dilihat pada gambar 1. 
+Visualisasi metrik RMSE dapat dilihat pada gambar 3. 
 
 ![image](https://raw.githubusercontent.com/adityacds/dicoding/main/metrics.png) \
-Gambar 1. Visualisasi metrik RMSE 
+Gambar 3. Visualisasi metrik RMSE 
+
+# Kesimpulan
+
+Model *Machine Learning* berupa sistem rekomendasi buku bagi pengguna menggunakan Collaborative Filtering telah selesai dibuat. Setelah diujikan, model ini bekerja cukup baik dalam memberikan 10 rekomendasi teratas terhadap buku berdasarkan preferensi pengguna sebelumnya. 10 buku rekomendasi teratas bisa dilihat pada tabel 7.
+
 
 # Referensi
 
