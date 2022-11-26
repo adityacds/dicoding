@@ -97,4 +97,19 @@ Pada tahap modelling ini, model menghitung skor kecocokan antara user dan ISBN d
 
 # Evaluation
 
+Setelah membangun model machine learning, kemudian dilakukan evaluasi kinerja model yang dihasilkan dengan menggunakan menggunakan metrik RMSE (Root Mean Square Error). Root Mean Square Error (RMSE) adalah metode pengukuran dengan mengukur perbedaan nilai dari prediksi sebuah model sebagai estimasi atas nilai yang diobservasi. Root Mean Square Error adalah hasil dari akar kuadrat Mean Square Error. Keakuratan metode estimasi kesalahan pengukuran ditandai dengan adanya nilai RMSE yang kecil. Metode estimasi yang mempunyai Root Mean Square Error (RMSE) lebih kecil dikatakan lebih akurat daripada metode estimasi yang mempunyai Root Mean Square Error (RMSE) lebih besar. Cara Menghitung Root Mean Square Error (RMSE) adalah dengan mengurangi nilai aktual dengan nilai prediksi kemudian dikuadratkan dan dijumlahkan keseluruhan hasilnya kemudian dibagi dengan banyaknya data. Hasil perhitungan tersebut selanjutnya dihitung kembali untuk mencari nilai dari akar kuadrat [4].
 
+Visualisasi metrik RMSE dapat dilihat pada gambar 1. 
+
+Gambar
+![image](https://user-images.githubusercontent.com/65145111/203143337-e417ce1f-ea61-418e-8cff-bb3efa599a09.png) \
+
+# Referensi
+
+[1] Gresi A.R., Alan N., Khasanah B.R., Robby A.S., Priyadi N.P. (2013). Rumah Baca Jendela Dunia, Sebuah Model Perpustakaan Panti Asuhan. Jurnal Ilmiah Mahasiswa, Vol. 3 No.2. https://media.neliti.com/media/publications/96720-ID-rumah-baca-jendela-dunia-sebuah-model-pe.pdf
+
+[2] Shofaussamawati. (2014). Menumbuhkan Minat Baca dengan Pengenalan Perpustakaan Pada Anak Sejak Dini. Jurnal IAIN, Vol. 2 No.1. https://journal.iainkudus.ac.id/index.php/Libraria/article/download/1189/1082
+
+[3] Ritdrix, A.H. (2018). Sistem Rekomendasi Buku Menggunakan Metode Item-Based Collaborative Filtering. Universitas Diponegoro. http://eprints.undip.ac.id/65823/1/laporan_24010311130044_1.pdf
+
+[4] Khoiri. (2020). _Pengertian dan Cara Menghitung Root Mean Square Error (RMSE). https://www.khoiri.com/2020/12/cara-menghitung-root-mean-square-error-rmse.html
